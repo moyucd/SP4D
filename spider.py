@@ -95,4 +95,4 @@ def build_url(pages):
         buildcsv(''.join(new))
         print("第 %d 页已完成" % (page))
 
-build_url(2)
+build_url()
