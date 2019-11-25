@@ -94,5 +94,3 @@ def build_url(pages):
         new[39] = str(page)
         buildcsv(''.join(new))
         print("第 %d 页已完成" % (page))
-
-build_url()
