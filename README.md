@@ -1,4 +1,7 @@
 # 课程设计 Python 网页爬虫
-需要 Beautifulsoup4 框架  
-爬取的网页为 实习僧 https://www.shixiseng.com/  
-用法：修改 `spider.py` 中函数 `build_url(x)` x 的数值为想要爬取的页面数量，在 `spider.py` 目录下 运行 `python run spider.py` 即可。
+基于 `Beautifulsoup4`  
+以 `PyQt5` 构建 UI  
+
+爬取的网页为 实习僧 `https://www.shixiseng.com/`    
+
+用法：在工作路径下，运行 `python run GUI.py` 会出现 UI 界面，点击 `爬取` 按钮，输入爬取页数，点击 `OK` 即可。
