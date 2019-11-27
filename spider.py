@@ -63,7 +63,7 @@ def decrypt_text(text, new_dict):  # 根据反反爬字典将加密文本替换�
 
 csvFile = open("csvData.csv", "w")  # 初始化CSV对象
 writer = csv.writer(csvFile)
-writer.writerow(["职位", "薪水", "公司名称"])  # 定义CSV字段
+writer.writerow(["职位", "薪水", "公司名称","区域"])  # 定义CSV字段
 
 
 def buildcsv(url):
@@ -78,11 +78,12 @@ def buildcsv(url):
         info2 = info1.find(class_='f-l intern-detail__job')
         info3 = info2.find("p")
         info4 = info1.find(class_='f-r intern-detail__company')
+        location = info2.find("span",class_='city ellipsis').string
         job = info3.find("a").string  # 职位
         salary = info3.find("span").string  # 薪资
         info5 = info4.find("p")
         company = info5.find("a").string  # 公司
-        writer.writerow([job, salary, company])  # 写入CSV
+        writer.writerow([job, salary, company,location])  # 写入CSV
 
 
 def build_url(pages):
