@@ -15,7 +15,7 @@ https://www.shixiseng.com/interns/iconfonts/file?rand=0.9593768089506858
 ```
 访问链接可以得到文件名为 `file` 的文件，猜测其后缀为 `woff2` 的字体文件，将其重命名为 `file.woff2`，再用字体编辑器打开，如图：
 
-![Alt text](1.png)
+![Alt text](font.png)
 
 用 `Python` 将其转换为 xml 文件方便修改编辑：
 ```Python
