@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import (QWidget, QPushButton, QInputDialog, QApplication)
-import spider
+from spider import build_url
 import sys
+
 
 class Example(QWidget):
 
@@ -23,7 +24,7 @@ class Example(QWidget):
                                         '输入想要爬取的页数')
 
         if ok:
-            spider.build_url(int(text))
+            build_url(int(text))
 
 
 if __name__ == '__main__':

@@ -2,9 +2,29 @@ import csv
 import requests
 import urllib
 import re
+from sqlalchemy import Column, create_engine, Integer, Text
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from fontTools.ttLib import TTFont
+
+engine = create_engine('sqlite:///C:\\Users\\hyy88\\Desktop\\spider\\data.db', echo=True)  # 初始化 连接数据库
+Base = declarative_base()  # 继承基础模型类
+Session = sessionmaker(bind=engine)  # 创建 session 对象
+session = Session()  # 实例化
+
+
+class Jobdetail(Base):  # 定义数据库的表
+    __tablename__ = 'jobdetails'
+    id = Column(Integer, primary_key=True)
+    job = Column(Text)
+    salary = Column(Text)
+    company = Column(Text)
+    location = Column(Text)
+
+
+Base.metadata.create_all(engine)  # 初始化表
 
 
 def getHTMLText(url):  # 获取网站
@@ -63,7 +83,7 @@ def decrypt_text(text, new_dict):  # 根据反反爬字典将加密文本替换�
 
 csvFile = open("csvData.csv", "w")  # 初始化CSV对象
 writer = csv.writer(csvFile)
-writer.writerow(["职位", "薪水", "公司名称","区域"])  # 定义CSV字段
+writer.writerow(["职位", "薪水", "公司名称", "区域"])  # 定义CSV字段
 
 
 def buildcsv(url):
@@ -78,12 +98,15 @@ def buildcsv(url):
         info2 = info1.find(class_='f-l intern-detail__job')
         info3 = info2.find("p")
         info4 = info1.find(class_='f-r intern-detail__company')
-        location = info2.find("span",class_='city ellipsis').string
+        location = info2.find("span", class_='city ellipsis').string
         job = info3.find("a").string  # 职位
         salary = info3.find("span").string  # 薪资
         info5 = info4.find("p")
         company = info5.find("a").string  # 公司
-        writer.writerow([job, salary, company,location])  # 写入CSV
+        writer.writerow([job, salary, company, location])  # 写入CSV
+        ed_job = Jobdetail(job=job, salary=salary, company=company, location=location)
+        session.add(ed_job)
+        session.commit()
 
 
 def build_url(pages):
