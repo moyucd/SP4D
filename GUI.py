@@ -1,6 +1,8 @@
-from PyQt5.QtWidgets import (QWidget, QPushButton, QInputDialog, QApplication)
-from spider import build_url
 import sys
+
+from PyQt5.QtWidgets import (QWidget, QPushButton, QInputDialog, QApplication)
+
+from spider import build_url
 
 
 class Example(QWidget):

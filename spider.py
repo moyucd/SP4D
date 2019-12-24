@@ -1,13 +1,14 @@
 import csv
-import requests
-import urllib
 import re
-from sqlalchemy import Column, create_engine, Integer, Text
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
+import urllib
 from urllib.parse import urljoin
+
+import requests
 from bs4 import BeautifulSoup
 from fontTools.ttLib import TTFont
+from sqlalchemy import Column, create_engine, Integer, Text
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 engine = create_engine('sqlite:///data.db', echo=True)  # 初始化 连接数据库
 Base = declarative_base()  # 继承基础模型类
