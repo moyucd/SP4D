@@ -9,7 +9,7 @@ from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from fontTools.ttLib import TTFont
 
-engine = create_engine('sqlite:///C:\\Users\\hyy88\\Desktop\\spider\\data.db', echo=True)  # 初始化 连接数据库
+engine = create_engine('sqlite:///data.db', echo=True)  # 初始化 连接数据库
 Base = declarative_base()  # 继承基础模型类
 Session = sessionmaker(bind=engine)  # 创建 session 对象
 session = Session()  # 实例化
